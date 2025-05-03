@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "skins")
@@ -73,7 +74,7 @@ public class Skin extends PanacheEntity {
         BigDecimal discountFactor = BigDecimal.ONE.subtract(
             new BigDecimal(discountPercentage).divide(new BigDecimal(100))
         );
-        return price.multiply(discountFactor).setScale(2, BigDecimal.ROUND_HALF_UP);
+        return price.multiply(discountFactor).setScale(2, RoundingMode.HALF_UP);
     }
 
     public Double getAverageRating() {
